@@ -23,6 +23,7 @@ import {
   MIN_SCALE,
   toggleExpandedBtn,
 } from "./ui_utils.js";
+import {AnnotationEditorParams} from "./annotation_editor_params.js";
 
 /**
  * @typedef {Object} ToolbarOptions
@@ -190,6 +191,8 @@ class Toolbar {
     // The buttons within the toolbar.
     for (const { element, eventName, eventDetails, telemetry } of buttons) {
       element.addEventListener("click", evt => {
+        // Added default value of show all button to true
+        editorHighlightShowAll.setAttribute("aria-pressed", true)
         if (eventName !== null) {
           eventBus.dispatch(eventName, {
             source: this,
